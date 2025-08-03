@@ -45,6 +45,31 @@ public class EmpleadoController {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     @GetMapping("/mejor/{id}") // http://localhost:8080/mejor/1
     public ResponseEntity<EmpleadoDto> getEmpleadoCorrecto(@PathVariable Long id) { //@PathVariable indica que el parametro se encuentra en la url con el nombre "id"
         for (EmpleadoDto empleadoDto : empleados) {
@@ -69,6 +94,7 @@ public class EmpleadoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> actualizarEmpleado(@PathVariable Long id, @RequestBody EmpleadoDto empleadoDto) {
+        //Primer problema, al estar usando DTOs inmutables, no se puede modificar el nombre del empleado
         for (EmpleadoDto empleado : empleados) {
             if(empleado.id() == id) {
                 empleado.nombre = empleadoDto.nombre();
