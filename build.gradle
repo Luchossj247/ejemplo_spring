@@ -25,6 +25,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Libreria para acceder a bases de datos relacionales usando JDBC (Java Database Connectivity)
+	implementation 'org.springframework.data:spring-data-jdbc'
+	// Libreria que implementa JPA (Java Persistence API) para mapear objetos Java a tablas de base de datos
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Base de datos en memoria H2, util para desarrollo y testing
+	runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {
