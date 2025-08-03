@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import ar.edu.huergo.lcarera.ejemplo_spring.dto.EmpleadoDto;
@@ -27,8 +28,8 @@ public class EmpleadoService {
         this.empleadoRepository.save(new Empleado(empleadoDto.nombre()));
     }
 
-    public void actualizarEmpleado(Long id, EmpleadoDto empleadoDto) {
-        Empleado empleado = this.empleadoRepository.findById(id).orElseThrow(() -> new RuntimeException("Empleado no encontrado"));
+    public void actualizarEmpleado(Long id, EmpleadoDto empleadoDto) throws NotFoundException {
+        Empleado empleado = this.empleadoRepository.findById(id).orElseThrow(() -> new NotFoundException());
         empleado.setNombre(empleadoDto.nombre());
         this.empleadoRepository.save(empleado);
     }

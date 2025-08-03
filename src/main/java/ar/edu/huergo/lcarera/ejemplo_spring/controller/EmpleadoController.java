@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ar.edu.huergo.lcarera.ejemplo_spring.dto.EmpleadoDto;
@@ -52,8 +53,8 @@ public class EmpleadoController {
         try {
             this.empleadoService.actualizarEmpleado(id, empleadoDto);
             return ResponseEntity.ok("Empleado actualizado correctamente");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 
